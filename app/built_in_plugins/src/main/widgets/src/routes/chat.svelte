@@ -276,9 +276,10 @@
 	style:font-weight={$settings['text_style.font_weight']}
 	style:padding="{$settings['message_style.margin']}px"
 	style:letter-spacing="{$settings['text_style.letter_spacing']}px"
+    style:line-height="{$settings['message_style.line_height']}%"
 	class:top-0={$settings['message_style.message_style'] == 'Text (Top-down)'}
-	class:flex-col-reverse={$settings['message_style.message_style'] == 'Text (Top-down)'}
-	class:flex-col={$settings['message_style.message_style'] == 'Text (Bottom-up)'}
+	class:flex-col-reverse={$settings['message_style.message_style'] == 'Text (Bottom-up)'}
+	class:flex-col={$settings['message_style.message_style'] == 'Text (Top-down)'}
 	class:bottom-0={$settings['message_style.message_style'] == 'Text (Bottom-up)'}
 	class:flex-row={$settings['message_style.message_style'] == 'Text (Sideways)' &&
 		$settings['text_style.text_align'] == 'Right'}

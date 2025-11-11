@@ -57,6 +57,16 @@ public class ChatWidget extends Widget {
                         .build()
                 )
                 .addItem(
+                        new WidgetSettingsRangeBuilder()
+                                .withId("line_height")
+                                .withName("Line Height (%)")
+                                .withDefaultValue(120)
+                                .withMin(80)
+                                .withMax(200)
+                                .withStep(1)
+                                .build()
+                )
+                .addItem(
                     new WidgetSettingsDropdownBuilder()
                         .withId("badges")
                         .withName("User Badges")
