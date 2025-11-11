@@ -232,7 +232,15 @@
 
 		Widget.on('update', () => {
 			settings.set(Widget.widgetData.settings);
-			changeFont($settings['text_style.font']);
+			if ($settings['text_style.font_base64'] && $settings['text_style.font_family']) {
+                changeFont(
+                    null,
+                    $settings['text_style.font_family'],
+                    $settings['text_style.font_base64']
+                );
+            } else {
+                changeFont($settings['text_style.font']);
+            }
 
 			const platforms = $settings['platform.platforms'];
 			for (const li of document.querySelectorAll('#chatbox>li')) {

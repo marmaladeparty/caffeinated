@@ -7,6 +7,7 @@ import co.casterlabs.caffeinated.pluginsdk.widgets.WidgetInstanceMode;
 import co.casterlabs.caffeinated.pluginsdk.widgets.settings.WidgetSettingsButton;
 import co.casterlabs.caffeinated.pluginsdk.widgets.settings.WidgetSettingsLayout;
 import co.casterlabs.caffeinated.pluginsdk.widgets.settings.WidgetSettingsSection;
+import co.casterlabs.caffeinated.pluginsdk.widgets.settings.WidgetSettingsItem;
 import co.casterlabs.caffeinated.pluginsdk.widgets.settings.items.WidgetSettingsCheckboxBuilder;
 import co.casterlabs.caffeinated.pluginsdk.widgets.settings.items.WidgetSettingsColorBuilder;
 import co.casterlabs.caffeinated.pluginsdk.widgets.settings.items.WidgetSettingsDropdownBuilder;
@@ -161,6 +162,8 @@ public class ChatWidget extends Widget {
                         .withDefaultValue("Poppins")
                         .build()
                 )
+                .addItem(WidgetSettingsItem.asText("font_family", "Custom Font Family", "", ""))
+                .addItem(WidgetSettingsItem.asText("font_base64", "Custom Font (Base64)", "", ""))
                 .addItem(
                     new WidgetSettingsRangeBuilder()
                         .withId("font_size")
