@@ -30,6 +30,8 @@
 
 	const settings = writable({});
 
+	$: isBottomUp = $settings['message_style.message_style'] == 'Text (Bottom-up)';
+
 	function onEvent(event) {
 		switch (event.event_type) {
 			case 'META': {
@@ -87,6 +89,12 @@
 				event.reply_target_data = chatElements[event.reply_target || ''] || null;
 
 				const li = document.createElement('li');
+
+				if (isBottomUp) {
+					li.style.position = 'sticky';
+					li.style.bottom = '0';
+				}
+
 				const card = new CardContainer({
 					target: li,
 					props: {
@@ -278,7 +286,6 @@
 	style:letter-spacing="{$settings['text_style.letter_spacing']}px"
     style:line-height="{$settings['message_style.line_height']}%"
 	class:top-0={$settings['message_style.message_style'] == 'Text (Top-down)'}
-	class:flex-col-reverse={$settings['message_style.message_style'] == 'Text (Bottom-up)'}
 	class:flex-col={$settings['message_style.message_style'] == 'Text (Top-down)'}
 	class:bottom-0={$settings['message_style.message_style'] == 'Text (Bottom-up)'}
 	class:flex-row={$settings['message_style.message_style'] == 'Text (Sideways)' &&
@@ -308,6 +315,11 @@
 	style:filter={$settings['text_style.text_shadow'] == -1
 		? ''
 		: `drop-shadow(0px 0px ${$settings['text_style.text_shadow']}px black)`}
+	style:height={isBottomUp ? '100%' : ''}
+	style:width={isBottomUp ? '100%' : ''}
+	style:display={isBottomUp ? 'grid' : ''}
+	style:grid-auto-rows={isBottomUp ? 'min-content' : ''}
+	style:overflow-y={isBottomUp ? 'hidden' : ''}
 >
 	<!---->
 </ul>
