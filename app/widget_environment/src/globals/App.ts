@@ -49,6 +49,10 @@ function recomputeStyle() {
         appStyleElement.innerHTML = ``;
     } else {
         appStyleElement.innerHTML = `
+        [data-rich-type="emote"] {
+            height: 1em !important;
+        }
+
         [data-rich-type="emoji"] > [data-emoji-provider="system"] {
             display: none !important;
         }
