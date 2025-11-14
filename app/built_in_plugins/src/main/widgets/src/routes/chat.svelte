@@ -29,6 +29,7 @@
 	let chatHistory = [];
 
 	const settings = writable({});
+    $: isTopDown = $settings['message_style.message_style'] == 'Text (Top-down)';
 
 	function onEvent(event) {
 		switch (event.event_type) {
@@ -123,8 +124,14 @@
 					chatElements[event.meta_id] = { element: li, component: comp, event: event };
 				}
 
+                if (isTopDown) {
+                    li.style.position = 'sticky';
+                    li.style.bottom = '0';
+                }
+
 				chatHistory.push({ element: li, component: comp, event: event });
 				chatBox.appendChild(li);
+                chatBox.scrollTop = chatBox.scrollHeight;
 
 				while (chatHistory.length > MAX_EVENTS_DISPLAY) {
 					const { element, event } = chatHistory.shift();
@@ -277,6 +284,10 @@
 	style:padding="{$settings['message_style.margin']}px"
 	style:letter-spacing="{$settings['text_style.letter_spacing']}px"
     style:line-height="{$settings['message_style.line_height']}%"
+    style:height="100%"
+    style:display="grid"
+    style:grid-auto-rows="min-content"
+    style:overflow-y="hidden"
 	class:top-0={$settings['message_style.message_style'] == 'Text (Top-down)'}
 	class:flex-col-reverse={$settings['message_style.message_style'] == 'Text (Bottom-up)'}
 	class:flex-col={$settings['message_style.message_style'] == 'Text (Top-down)'}
